@@ -4,31 +4,25 @@ require 'rspec'
 require 'mail'
 
 $otp = ""
-driver = Selenium::WebDriver.for :chrome
+# driver = Selenium::WebDriver.for :chrome
 
 Given('user open amazon website for sign in') do
-  driver.navigate.to 'https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&'         # direct to site
-  sleep(10)
+  driver.navigate.to 'https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&'
 end
 
 When('user input email yudistira96@gmail.com') do
   sleep(4)
   driver.find_element(:id, 'ap_email').send_keys "yudistira96@gmail.com"
-  sleep(4)
   driver.find_element(:class, 'a-button-input').click
 
 end
 
 And('user input password YUd1$t1r4sug4nd1') do
-  sleep(4)
   driver.find_element(:id, 'ap_password').send_keys "YUd1$t1r4sug4nd1"
-
 end
 
 And('user click Sign in') do
-  sleep(4)
   driver.find_element(:class, 'a-button-input').click
-  sleep(15)
 
   if driver.page_source.include? "Hello, yudis"
     nama = driver.find_element(:class, 'nav-shortened-name').text
@@ -60,5 +54,5 @@ end
 
 Then('validate if user already sign in') do
   nama = driver.find_element(:class, 'nav-shortened-name').text
-  nama.should == "yudis"                                                                # sleep/pause 2 second
+  nama.should == "yudis"
 end

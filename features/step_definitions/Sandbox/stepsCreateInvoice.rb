@@ -46,8 +46,6 @@ And('user click dropdown pelanggan and add new pelanggan') do
   sleep(5)
 
 end
-
-
 And('user input transaction_transaction_date') do
   driver.find_element(:id, 'transaction_transaction_date').clear
   driver.find_element(:id, 'transaction_transaction_date').send_keys "26/11/2020"
